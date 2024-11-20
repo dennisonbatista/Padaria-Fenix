@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, doc, setDoc } from 'firebase/firestore'; // Importando Firestore
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signOut,
+  onAuthStateChanged,
+} from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -8,17 +14,17 @@ import { getFirestore, doc, setDoc } from 'firebase/firestore'; // Importando Fi
 export class AuthService {
   private usuario: any = null;
   private auth = getAuth(); // Instância do Firebase Auth
-  private db = getFirestore(); // Instância do Firestore
 
   constructor() {
     // Verificar se há um usuário autenticado ao iniciar
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         // Usuário autenticado, armazenar informações
+        const nome = localStorage.getItem('usuarioNome') || 'Visitante';
         this.usuario = {
           uid: user.uid,
           email: user.email,
-          displayName: user.displayName || 'Visitante',
+          displayName: nome,
           photoURL: user.photoURL,
         };
       } else {
@@ -29,25 +35,30 @@ export class AuthService {
   }
 
   // Método para login no Firebase
-  loginNoFirebase(email: string, senha: string) {
-    return signInWithEmailAndPassword(this.auth, email, senha)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        this.usuario = {
-          uid: user.uid,
-          email: user.email,
-          displayName: user.displayName || 'Visitante',
-          photoURL: user.photoURL,
-        };
-        return this.usuario; // Retorna o usuário autenticado
-      })
-      .catch((error: any) => { // Agora o tipo do erro é tratado
-        throw new Error('Erro no login: ' + (error.message || 'Erro desconhecido'));
-      });
+  async loginNoFirebase(email: string, senha: string): Promise<void> {
+    try {
+      const userCredential = await signInWithEmailAndPassword(this.auth, email, senha);
+      const user = userCredential.user;
+
+      // Recuperar o nome do localStorage ou definir como 'Visitante'
+      const nome = localStorage.getItem('usuarioNome') || 'Visitante';
+      console.log('Nome recuperado no localStorage:', nome); // Log para verificar o armazenamento
+
+      // Atualizar o objeto do usuário local
+      this.usuario = {
+        uid: user.uid,
+        email: user.email,
+        displayName: nome,
+        photoURL: user.photoURL,
+      };
+    } catch (error: any) {
+      console.error('Erro no login:', error.message);
+      throw new Error('Erro no login: ' + (error.message || 'Erro desconhecido'));
+    }
   }
 
   // Método para cadastro no Firebase
-  async cadastroNoFirebase(email: string, senha: string, nome: string) {
+  async cadastroNoFirebase(email: string, senha: string, nome: string): Promise<void> {
     try {
       const userCredential = await createUserWithEmailAndPassword(this.auth, email, senha);
       const user = userCredential.user;
@@ -55,50 +66,49 @@ export class AuthService {
       // Atualiza o displayName do usuário no Firebase Auth
       await updateProfile(user, { displayName: nome });
 
-      // Salva as informações no Firestore
-      const userRef = doc(this.db, "usuarios", user.uid); // Usando o UID como referência
-      await setDoc(userRef, {
-        nome: nome,
-        email: user.email,
-      });
+      // Salvar o nome no localStorage
+      localStorage.setItem('usuarioNome', nome);
+      console.log('Nome salvo no localStorage:', nome); // Log para verificar o armazenamento
 
-      // Atualiza o objeto de usuário na aplicação
+      // Atualizar o objeto do usuário local
       this.usuario = {
         uid: user.uid,
         email: user.email,
-        displayName: user.displayName || 'Visitante',
+        displayName: nome,
         photoURL: user.photoURL,
       };
-
-      return this.usuario; // Retorna o usuário autenticado com o nome atualizado
-    } catch (error: any) { // Definição do tipo de erro
-      throw new Error("Erro ao criar usuário: " + (error.message || 'Erro desconhecido'));
+    } catch (error: any) {
+      console.error('Erro ao cadastrar usuário:', error.message);
+      throw new Error('Erro ao criar usuário: ' + (error.message || 'Erro desconhecido'));
     }
   }
 
   // Método para logout
-  logout() {
-    return signOut(this.auth)
-      .then(() => {
-        this.usuario = null;
-      })
-      .catch((error: any) => { // Tratamento adequado do tipo de erro
-        throw new Error('Erro ao desconectar: ' + (error.message || 'Erro desconhecido'));
-      });
+  async logout(): Promise<void> {
+    try {
+      await signOut(this.auth);
+      this.usuario = null;
+
+      // Remover o nome do localStorage
+      localStorage.removeItem('usuarioNome');
+    } catch (error: any) {
+      console.error('Erro ao desconectar:', error.message);
+      throw new Error('Erro ao desconectar: ' + (error.message || 'Erro desconhecido'));
+    }
   }
 
   // Retorna o nome do usuário ou "Visitante" caso não esteja logado
-  getUsuarioNome() {
+  getUsuarioNome(): string {
     return this.usuario ? this.usuario.displayName : 'Visitante';
   }
 
   // Verifica se o usuário está autenticado
-  isLoggedIn() {
+  isLoggedIn(): boolean {
     return this.usuario !== null;
   }
 
   // Retorna o usuário autenticado
-  getUsuario() {
+  getUsuario(): any {
     return this.usuario;
   }
 }

@@ -7,7 +7,7 @@
 
   <ion-header>
     <ion-toolbar>
-      <ion-title>Produtos</ion-title>
+      <img class="logo" src="assets/imgs/fenix.jpg" alt="Logo">
       <ion-buttons slot="end">
         <ion-button (click)="navigateToCadastroOuPerfil()">
           <!-- Exibe 'Bem-vindo, [Nome]' se o usuário estiver logado, senão 'Cadastrar' -->
@@ -22,15 +22,11 @@
       <!-- Condicional para verificar se o usuário está logado -->
       <div *ngIf="isLoggedIn">
         <!-- Mostrar lista de produtos -->
-        <ion-item>
-          <ion-label>Produtos Disponíveis</ion-label>
-        </ion-item>
         <!-- Seu código para exibir os produtos -->
       </div>
     
       <div *ngIf="!isLoggedIn">
         <!-- Mostrar uma mensagem para quem não está logado -->
-        <p>Por favor, faça login para visualizar os produtos.</p>
       </div>
 
       <!-- Home -->
@@ -48,16 +44,10 @@
       <!-- Exibir apenas se estiver logado -->
       <ng-container *ngIf="isLoggedIn">
         <!-- Configurações -->
-        <ion-item routerLink="/configuracoes">
-          <ion-icon name="settings" slot="start"></ion-icon>
-          <ion-label>Configurações</ion-label>
-        </ion-item>
+        
 
         <!-- Perfil do Usuário -->
-        <ion-item routerLink="/perfil">
-          <ion-icon name="person" slot="start"></ion-icon>
-          <ion-label>Perfil</ion-label>
-        </ion-item>
+        
 
         <!-- Sobre -->
         <ion-item routerLink="/sobre">

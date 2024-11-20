@@ -12,6 +12,15 @@ const routes: Routes = [
     path: 'configuracoes',
     loadChildren: () => import('./configuracoes/configuracoes.module').then( m => m.ConfiguracoesPageModule)
   },
+  {
+    path: 'ajuda',
+    loadChildren: () => import('./ajuda/ajuda.module').then( m => m.AjudaPageModule)
+  },
+  {
+    path: 'sobre',
+    loadChildren: () => import('./sobre/sobre.module').then( m => m.SobrePageModule)
+  },
+
 // Rota com parâmetro
 ];
 
