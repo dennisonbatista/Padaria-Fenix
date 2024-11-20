@@ -1,0 +1,46 @@
+.logo {
+    width: 40px; /* Ajuste o tamanho da logo conforme necessário */
+    height: 40px; /* Para garantir que a logo seja redonda */
+    border-radius: 50%; /* Faz a logo ficar redonda */
+    object-fit: cover; /* Garante que a imagem seja cortada proporcionalmente */
+}
+
+ion-content {
+    --background: url('/assets/imgs/telaprodutos3.jpg') no-repeat center center; /* Imagem de fundo */
+    --background-size: cover; /* Faz com que a imagem cubra toda a área */
+    height: 100%; /* Garante que o conteúdo ocupe toda a altura disponível */
+  }
+  
+  /* Estiliza o texto do cabeçalho */
+  h2 {
+    color: #f39c12; /* Cor do título */
+    font-size: 1.5rem; /* Tamanho da fonte */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Sombra para maior contraste */
+  }
+  
+  /* Estiliza os itens do formulário */
+  ion-item {
+    --background: #444; /* Fundo semi-transparente para maior legibilidade */
+    margin: 10px 0; /* Espaçamento entre os itens */
+    border-radius: 8px; /* Cantos arredondados */
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+  /* Estiliza o texto do ion-label */
+  ion-label {
+    color: #ffffff; /* Cor do texto */
+  }
+  
+  /* Estiliza o botão */
+  ion-button {
+    margin-top: 20px; /* Espaçamento superior para o botão */
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+  /* Estiliza o link */
+  p a {
+    color: #f39c12; /* Cor do link */
+  }
+  

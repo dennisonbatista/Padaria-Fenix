@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="voltarParaProdutos()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ receita?.produto }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Exibe a imagem da receita -->
+  <ion-img [src]="receita?.imagem" alt="{{ receita?.produto }}" *ngIf="receita?.imagem"></ion-img>
+
+  <h2>Ingredientes</h2>
+  <ul>
+    <li *ngFor="let ingrediente of receita?.ingredientes">{{ ingrediente }}</li>
+  </ul>
+
+  <h2>Modo de Preparo</h2>
+  <p>{{ receita?.modoDePreparo }}</p>
+</ion-content>

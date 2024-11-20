@@ -1,0 +1,31 @@
+.home-background {
+  --background: url('/assets/imgs/telaprodutos3.jpg') no-repeat center center;
+background-size: cover;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+
+.logo-container {
+  text-align: center;
+  margin-top: 50%;
+}
+
+.title {
+  color: #ff4500;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.subtitle {
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+ion-button {
+  --background: #e87d23;
+  --border-radius: 20px;
+  color: #fff;
+}

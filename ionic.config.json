@@ -1,0 +1,7 @@
+{
+  "name": "padaria-fenix",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

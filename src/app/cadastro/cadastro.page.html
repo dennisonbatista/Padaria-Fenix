@@ -1,0 +1,76 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-title class="ion-text-center">Cadastro</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/porducts"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form (ngSubmit)="cadastro()" [formGroup]="formGroup">
+    <ion-card color="light" class="ion-text-center">
+      <ion-card-header>
+        <ion-card-title>FAZER CADASTRO</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>Entrar com e-mail e senha.</ion-card-content>
+    </ion-card>
+    <!-- Outros campos como email e senha -->
+    <ion-item>
+      <ion-icon name="person" slot="start"></ion-icon>
+      <ion-input placeholder="Digite seu apelido"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-icon name="mail" slot="start"></ion-icon>
+      <ion-input placeholder="Digite seu email" formControlName="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="lock-closed" slot="start"></ion-icon>
+      <ion-input type="password" placeholder="Digite sua senha" formControlName="senha"></ion-input>
+    </ion-item>
+    
+    <!-- Campo de CEP -->
+    <ion-item>
+      <ion-icon name="pin" slot="start"></ion-icon>
+      <ion-input
+        type="text"
+        maxlength="8"
+        placeholder="Digite seu CEP"
+        formControlName="cep"
+        (ionInput)="getAddress($event.target?.value?.toString() || '')">
+      </ion-input>
+    </ion-item>
+
+    <!-- Campo de Rua (preenchido automaticamente) -->
+    <ion-item>
+      <ion-icon name="location" slot="start"></ion-icon>
+      <ion-input
+        type="text"
+        placeholder="Rua"
+        [value]="rua"
+        readonly>
+      </ion-input>
+    </ion-item>
+
+    <!-- Campo de Bairro (preenchido automaticamente) -->
+    <ion-item>
+      <ion-icon name="map" slot="start"></ion-icon>
+      <ion-input
+        type="text"
+        placeholder="Bairro"
+        [value]="bairro"
+        readonly>
+      </ion-input>
+    </ion-item>
+
+    <!-- Botão de cadastro -->
+    <div class="ion-text-center">
+      <ion-button color="warning" type="submit">Novo Cadastro
+        <ion-icon slot="end" name="save-outline"></ion-icon>
+      </ion-button>
+      <p>Já possui um login? <a href="/login">Entre agora</a></p>
+    </div>
+  </form>
+</ion-content>

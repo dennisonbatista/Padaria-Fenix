@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-title class="ion-text-center">Login</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/products"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <form>
+    <ion-card color="light" class="ion-text-center">
+      <ion-card-header>
+        <ion-card-title>FAZER LOGIN</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        Digitar o e-mail e senha.
+      </ion-card-content>
+    </ion-card> <br>
+    <ion-item line="full">
+      <ion-icon name="mail" slot="start"></ion-icon>
+      <ion-input type="text" name="email" [(ngModel)]="email" placeholder="Digite seu email"></ion-input>
+    </ion-item>
+    <ion-item line="full">
+      <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+      <ion-input type="password" name="senha" [(ngModel)]="senha" placeholder="Digite sua senha"></ion-input>
+    </ion-item>
+    <div class="ion-text-center">
+      <ion-button color="warning" type="submit" (click)="loginUsuario ()">Login
+        <ion-icon slot="end" name="enter-outline"></ion-icon>
+      </ion-button>
+      <p style="text-align: left;">
+        Não possui um login? 
+        <span style="margin-right: 10px;">
+          <a href="/cadastro">Cadastre-se</a>
+        </span>
+    </div>
+  </form>
+</ion-content>

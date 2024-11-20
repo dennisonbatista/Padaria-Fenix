@@ -1,0 +1,183 @@
+.custom-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+  --background: url('/assets/imgs/telaprodutos3.jpg') no-repeat center center; /* Imagem de fundo */
+  --background-size: cover; /* Faz com que a imagem cubra toda a área */
+}
+
+/* Estilo para o conteúdo principal */
+#main-content.custom-background {
+  background-color: #f5f5f5; /* Cor de fundo suave */
+  padding: 16px; /* Espaçamento ao redor do conteúdo */
+  
+}
+
+.logo {
+  width: 40px; /* Ajuste o tamanho da logo conforme necessário */
+  height: 40px; /* Para garantir que a logo seja redonda */
+  border-radius: 50%; /* Faz a logo ficar redonda */
+  object-fit: cover; /* Garante que a imagem seja cortada proporcionalmente */
+  margin-right: 10px;
+}
+/* Estilo para a seção de categoria */
+.category-section {
+  margin-bottom: 24px;
+}
+
+.category-section h2 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+
+/* Estilo para o item de categoria (Pães) */
+ion-item {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  margin-bottom: 12px; /* Espaçamento entre os itens */
+}
+
+/* Ícone de dropdown (seta) */
+ion-icon[name="arrow-dropdown"] {
+  font-size: 1.2rem;
+  color: #444;
+}
+
+/* Estilo para a lista de pães */
+ion-list {
+  --background: #444; /* Fundo branco */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  margin-bottom: 12px; /* Espaçamento entre os itens */
+  padding: 0;
+}
+
+/* Estilo para cada item individual de pão */
+ion-item ion-thumbnail {
+  --border-radius: 8px; /* Bordas arredondadas para as imagens */
+}
+
+ion-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Estilo para o rótulo de cada item */
+ion-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #444;
+}
+
+/* Efeito de hover para cada item (em navegadores que suportam hover) */
+ion-item:hover {
+  background-color: #444;
+  transition: background-color 0.3s;
+}
+
+.category-section {
+  --background-color: transparent; 
+  margin: 0; 
+  padding: 10px; 
+  border-radius: 10px; 
+  box-shadow: none; 
+}
+
+.category-section h2 {
+  color: orange; 
+  text-align: center; 
+}
+
+ion-list {
+  --background: transparent; 
+}
+
+ion-item {
+  --background: transparent; 
+  --ion-item-background: transparent; 
+}
+
+h2 {
+  color: #f39c12; /* Cor do título */
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Sombra */
+}
+
+/* Estiliza o texto do ion-label */
+ion-label {
+  color: #000;
+}
+
+/* Estilo para o cabeçalho do menu */
+ion-menu {
+  ion-header {
+    ion-toolbar {
+      --background: #f39c12; /* Cor de fundo do cabeçalho */
+      --color: #ffffff; /* Cor do texto no cabeçalho */
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  }
+
+  /* Estilo para o conteúdo do menu */
+
+  ion-content {
+    --background: #1e1e1e; /* Cor de fundo do menu */
+    padding-top: 10px;
+
+    ion-list {
+      margin: 0;
+
+      ion-item {
+        --background-hover: #292828; /* Cor de fundo ao passar o mouse */
+        --border-color: transparent;
+        border-radius: 8px;
+        margin: 5px 10px;
+        padding: 10px;
+        transition: all 0.3s ease;
+
+        ion-icon {
+          color: #f39c12; /* Cor dos ícones */
+          font-size: 1.3em;
+          margin-right: 8px;
+        }
+
+        ion-label {
+          color: #ffffff; /* Cor do texto */
+          font-size: 1em;
+          font-weight: 500;
+        }
+
+        /* Efeito hover */
+        &:hover {
+          background: var(--background-hover);
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+}
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+  --background: url('/assets/imgs/telaprodutos.jpg') no-repeat center center; /* Imagem de fundo */
+  --background-size: cover; /* Faz com que a imagem cubra toda a área */
+
+  
+  
+
+}
+
+
+

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="transparent"> 
+    <ion-title style="display: flex; align-items: center; justify-content: center;">
+      <a [routerLink]="['/products']">
+        <img src="assets/icon/logo.jpeg" alt="Padaria Fênix" class="logo" style="margin-right: 10px;">
+      </a>
+      Alterar a senha
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class="container" style="text-align: center;">
+    <h2>Alterar a senha</h2>
+
+    <ion-item>
+      <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+      <ion-input type="password" placeholder="Digite a nova senha"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+      <ion-input type="password" placeholder="Confirme sua nova senha"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" color="warning">Alterar</ion-button>
+  </div>
+
+
+      <!-- Opção de Deslogar -->
+      <ion-item button (click)="logout()">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        <ion-label>Deslogar</ion-label>
+      </ion-item>
+  </ion-content>
+  
+

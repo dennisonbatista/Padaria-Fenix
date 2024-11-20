@@ -1,0 +1,213 @@
+<ion-menu side="start" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Produtos</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="navigateToCadastroOuPerfil()">
+          <!-- Exibe 'Bem-vindo, [Nome]' se o usuário estiver logado, senão 'Cadastrar' -->
+          {{ isLoggedIn ? 'Bem-vindo, ' + usuarioNome : 'Cadastrar' }}
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <!-- Condicional para verificar se o usuário está logado -->
+      <div *ngIf="isLoggedIn">
+        <!-- Mostrar lista de produtos -->
+        <ion-item>
+          <ion-label>Produtos Disponíveis</ion-label>
+        </ion-item>
+        <!-- Seu código para exibir os produtos -->
+      </div>
+    
+      <div *ngIf="!isLoggedIn">
+        <!-- Mostrar uma mensagem para quem não está logado -->
+        <p>Por favor, faça login para visualizar os produtos.</p>
+      </div>
+
+      <!-- Home -->
+      <ion-item routerLink="/home">
+        <ion-icon name="home" slot="start"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-item>
+
+      <!-- Ajuda -->
+      <ion-item routerLink="/ajuda">
+        <ion-icon name="help-circle" slot="start"></ion-icon>
+        <ion-label>Ajuda</ion-label>
+      </ion-item>
+
+      <!-- Exibir apenas se estiver logado -->
+      <ng-container *ngIf="isLoggedIn">
+        <!-- Configurações -->
+        <ion-item routerLink="/configuracoes">
+          <ion-icon name="settings" slot="start"></ion-icon>
+          <ion-label>Configurações</ion-label>
+        </ion-item>
+
+        <!-- Perfil do Usuário -->
+        <ion-item routerLink="/perfil">
+          <ion-icon name="person" slot="start"></ion-icon>
+          <ion-label>Perfil</ion-label>
+        </ion-item>
+
+        <!-- Sobre -->
+        <ion-item routerLink="/sobre">
+          <ion-icon name="information-circle" slot="start"></ion-icon>
+          <ion-label>Sobre</ion-label>
+        </ion-item>
+
+        <!-- Logout -->
+        <ion-item button (click)="logout()">
+          <ion-icon name="log-out" slot="start"></ion-icon>
+          <ion-label>Sair</ion-label>
+        </ion-item>
+      </ng-container>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title> <img src="assets/icon/logo.jpeg" alt="Padaria Fênix" class="logo" style="margin-top: 10px;">Padaria Fênix</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Seção de Pães -->
+<ion-content id="main-content" class="custom-background">
+  <div class="category-section">
+    <h2>Pães</h2>
+    <ion-list>
+      <ion-item (click)="togglePaoList()" detail>
+        <ion-icon name="arrow-dropdown" slot="end"></ion-icon>
+        <ion-label>Pães</ion-label>
+      </ion-item>
+      <ion-list *ngIf="showPaoList">
+        <ion-item *ngFor="let produto of paes" [routerLink]="['/receitas', produto.nome]">
+          <ion-thumbnail slot="start">
+            <img [src]="produto.imagem" />
+          </ion-thumbnail>
+          <ion-label>{{ produto.nome }}<br />
+            <small>Preço: R$ {{ produto.preco }}</small> </ion-label>
+          <ion-icon name="book-outline" slot="end"></ion-icon> 
+        </ion-item>
+      </ion-list>
+    </ion-list>
+  </div>
+
+  <!-- Seção de Bebidas -->
+  <div class="category-section">
+    <h2>Bebidas</h2>
+    <ion-list>
+      <ion-item (click)="toggleBebidaList()" detail>
+        <ion-icon name="arrow-dropdown" slot="end"></ion-icon>
+        <ion-label>Bebidas</ion-label>
+      </ion-item>
+      <ion-list *ngIf="showBebidaList">
+        <ion-item *ngFor="let bebida of bebida">
+          <ion-thumbnail slot="start">
+            <img [src]="bebida.imagem" />
+          </ion-thumbnail>
+          <ion-label>{{ bebida.nome }}<br />
+            <small>Preço: R$ {{ bebida.preco }}</small> </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-list>
+  </div>
+
+  <!-- Seção de Bolos -->
+  <div class="category-section">
+    <h2>Bolos</h2>
+    <ion-list>
+      <ion-item (click)="toggleBoloList()" detail>
+        <ion-icon name="arrow-dropdown" slot="end"></ion-icon>
+        <ion-label>Bolos</ion-label>
+      </ion-item>
+      <ion-list *ngIf="showBoloList">
+        <ion-item *ngFor="let bolo of bolos" [routerLink]="['/receitas', bolo.nome]">
+          <ion-thumbnail slot="start">
+            <img [src]="bolo.imagem" />
+          </ion-thumbnail>
+          <ion-label>{{ bolo.nome }}<br />
+            <small>Preço: R$ {{ bolo.preco }}</small> </ion-label>
+          <ion-icon name="book-outline" slot="end"></ion-icon> 
+        </ion-item>
+      </ion-list>
+    </ion-list>
+  </div>
+
+  <!-- Seção de Biscoitos -->
+  <div class="category-section">
+    <h2>Biscoitos</h2>
+    <ion-list>
+      <ion-item (click)="toggleBiscoitoList()" detail>
+        <ion-icon name="arrow-dropdown" slot="end"></ion-icon>
+        <ion-label>Biscoitos</ion-label>
+      </ion-item>
+      <ion-list *ngIf="showBiscoitoList">
+        <ion-item *ngFor="let biscoito of biscoitos" [routerLink]="['/receitas', biscoito.nome]">
+          <ion-thumbnail slot="start">
+            <img [src]="biscoito.imagem" />
+          </ion-thumbnail>
+          <ion-label>{{ biscoito.nome }}<br />
+            <small>Preço: R$ {{ biscoito.preco }}</small></ion-label>
+          <ion-icon name="book-outline" slot="end"></ion-icon> 
+        </ion-item>
+      </ion-list>
+    </ion-list>
+  </div>
+
+  <!-- Seção de Frios -->
+  <div class="category-section">
+    <h2>Frios</h2>
+    <ion-list>
+      <ion-item (click)="toggleFrioList()" detail>
+        <ion-icon name="arrow-dropdown" slot="end"></ion-icon>
+        <ion-label>Frios</ion-label>
+      </ion-item>
+      <ion-list *ngIf="showFrioList">
+        <ion-item *ngFor="let frio of frios">
+          <ion-thumbnail slot="start">
+            <img [src]="frio.imagem" />
+          </ion-thumbnail>
+          <ion-label>{{ frio.nome }}<br />
+            <small>Preço: R$ {{ frio.preco }}</small></ion-label> 
+        </ion-item>
+      </ion-list>
+    </ion-list>
+  </div>
+
+  <!-- Seção de Outros -->
+  <div class="category-section">
+    <h2>Outros</h2>
+    <ion-list>
+      <ion-item (click)="toggleOutroList()" detail>
+        <ion-icon name="arrow-dropdown" slot="end"></ion-icon>
+        <ion-label>Outros</ion-label>
+      </ion-item>
+      <ion-list *ngIf="showOutroList">
+        <ion-item *ngFor="let outro of outros" [routerLink]="['/receitas', outro.nome]">
+          <ion-thumbnail slot="start">
+            <img [src]="outro.imagem" />
+          </ion-thumbnail>
+          <ion-label>{{ outro.nome }}<br />
+            <small>Preço: R$ {{ outro.preco }}</small></ion-label>
+          <ion-icon name="book-outline" slot="end"></ion-icon> 
+        </ion-item>
+      </ion-list>
+    </ion-list>
+  </div>
+</ion-content>
