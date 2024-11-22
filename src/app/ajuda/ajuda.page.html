@@ -1,25 +1,55 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Ajuda</ion-title>
+<ion-header translucent="true">
+  <ion-toolbar color="warning">
+    <!-- Botão de voltar -->
     <ion-buttons slot="start">
-      <!-- Botão de voltar -->
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
+    <!-- Título com logo -->
+    <ion-title>
+      <div class="title-with-logo">
+        Ajuda
+      </div>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-label>Como usar o aplicativo?</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Entre em contato com o suporte</ion-label>
-    </ion-item>
-  </ion-list>
+<ion-content fullscreen="true">
+  <div class="container">
+    <h2>Como podemos te ajudar?</h2>
+    <ion-list>
+      <!-- Primeiro item: Como usar o aplicativo -->
+      <ion-item (click)="toggleAjudaList('comoUsar')" detail>
+        <ion-icon name="arrow-dropdown" slot="end"></ion-icon>
+        <ion-label>Como usar o aplicativo?</ion-label>
+      </ion-item>
+      <ion-list *ngIf="showComoUsar">
+        <ion-item>
+          <ion-label>
+            <p>
+              Este aplicativo foi projetado para facilitar sua experiência. Navegue pelo menu para acessar diferentes
+              funcionalidades, como consultar produtos e preços.
+            </p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
 
-  <!-- Botão adicional de voltar -->
-  <div class="button-container">
-    <ion-button expand="block" routerLink="/home">Voltar para Home</ion-button>
+      <!-- Segundo item: Contato com suporte -->
+      <ion-item (click)="toggleAjudaList('contatoSuporte')" detail>
+        <ion-icon name="arrow-dropdown" slot="end"></ion-icon>
+        <ion-label>Entre em contato com o suporte</ion-label>
+      </ion-item>
+      <ion-list *ngIf="showContatoSuporte">
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <img src="assets/icon/ajuda.png" alt="Suporte">
+          </ion-thumbnail>
+          <ion-label>
+            <p>
+              Para suporte, entre em contato via email: suporte&#64;padariafenix.com ou pelo telefone: (21) 98765-4321.
+            </p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-list>
   </div>
 </ion-content>

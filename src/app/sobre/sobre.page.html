@@ -1,25 +1,89 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Sobre</ion-title>
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <!-- Título da página -->
+    <ion-title class="ion-text-center">Sobre</ion-title>
+    <!-- Botão de voltar -->
     <ion-buttons slot="start">
-      <!-- Botão de voltar -->
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-label>Sobre a Padaria Fênix</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Missão, Visão e Valores</ion-label>
-    </ion-item>
-  </ion-list>
+<ion-content [fullscreen]="true">
+  <!-- Card informativo inicial -->
+  <ion-card color="light" class="ion-text-center">
+    <ion-card-header>
+      <ion-card-title>Sobre a Padaria Fênix</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Aqui você pode conhecer mais sobre a nossa padaria, nossa missão, visão e valores.
+    </ion-card-content>
+  </ion-card>
 
-  <!-- Botão adicional de voltar -->
-  <div class="button-container">
-    <ion-button expand="block" routerLink="/home">Voltar para Home</ion-button>
-  </div>
+  <!-- Lista de informações interativas -->
+  <ion-list>
+    <!-- Item: Sobre a Padaria Fênix -->
+    <ion-item (click)="toggleList('sobrePadaria')" detail>
+      <ion-icon name="information-circle-outline" slot="start"></ion-icon>
+      <ion-label>Sobre a Padaria Fênix</ion-label>
+      <ion-icon name="arrow-dropdown" slot="end"></ion-icon>
+    </ion-item>
+    <ion-list *ngIf="showSobrePadaria">
+      <ion-item>
+        <ion-label>
+          <p>
+            A Padaria Fênix é sinônimo de qualidade e tradição, oferecendo os melhores produtos artesanais para nossos clientes.
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <!-- Item: Missão -->
+    <ion-item (click)="toggleList('missao')" detail>
+      <ion-icon name="ribbon-outline" slot="start"></ion-icon>
+      <ion-label>Missão</ion-label>
+      <ion-icon name="arrow-dropdown" slot="end"></ion-icon>
+    </ion-item>
+    <ion-list *ngIf="showMissao">
+      <ion-item>
+        <ion-label>
+          <p>
+            Nossa missão é proporcionar momentos deliciosos e únicos com produtos de alta qualidade.
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <!-- Item: Visão -->
+    <ion-item (click)="toggleList('visao')" detail>
+      <ion-icon name="eye-outline" slot="start"></ion-icon>
+      <ion-label>Visão</ion-label>
+      <ion-icon name="arrow-dropdown" slot="end"></ion-icon>
+    </ion-item>
+    <ion-list *ngIf="showVisao">
+      <ion-item>
+        <ion-label>
+          <p>
+            Ser reconhecida como a melhor padaria da região, inovando sempre para atender nossos clientes.
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <!-- Item: Valores -->
+    <ion-item (click)="toggleList('valores')" detail>
+      <ion-icon name="heart-outline" slot="start"></ion-icon>
+      <ion-label>Valores</ion-label>
+      <ion-icon name="arrow-dropdown" slot="end"></ion-icon>
+    </ion-item>
+    <ion-list *ngIf="showValores">
+      <ion-item>
+        <ion-label>
+          <p>
+            Respeito, excelência, sustentabilidade e inovação são os nossos pilares.
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-list>
 </ion-content>
