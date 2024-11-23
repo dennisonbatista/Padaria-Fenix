@@ -1,9 +1,16 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="warning">
-    <ion-title class="ion-text-center">Login</ion-title>
+<ion-header>
+  <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/products"></ion-back-button>
+      <!-- Botão de voltar -->
+      <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
+    <ion-title>
+      <div class="title-with-logo">
+        <!-- Logo da padaria -->
+        <img src="assets/icon/logo.jpeg" alt="Padaria Fênix" class="logo">
+        
+      </div>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">

@@ -10,6 +10,22 @@
   --background-size: cover; /* Faz com que a imagem cubra toda a área */
   height: 100%; /* Garante que o conteúdo ocupe toda a altura disponível */
   }
+
+  .title-with-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  .logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
   
   /* Estiliza o texto do cabeçalho */
   h2 {
@@ -46,4 +62,6 @@
   p {
     color: white;
   }
-  
+  .ion-text-center{
+    color: yellow;
+  }
